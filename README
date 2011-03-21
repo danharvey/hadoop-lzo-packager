@@ -17,7 +17,7 @@ Requirements:
   - JAVA_HOME must be set in your environment
 - appropriate package building tools for your platform
   - yum install rpm-build        (RedHat based)
-  - apt-get install dev-scripts  (Debian based)
+  - apt-get install devscripts  (Debian based)
 - ant version 1.7.0 or greater (RedHat will require some fiddling[1])
 
 When you try to build for your platform, build dependency errors will also
@@ -64,6 +64,10 @@ version of wget which does not use the filename from the redirected URL.
 You can work around it with:
 
   WGET_OPTS=--trust-server-names=on ./run.sh
+
+Or on older verions of wget (Including the one with Debian Lenny) you can use this:
+
+  WGET_OPTS=--use-server-file-name ./run.sh
 
 Or with both options:
 
