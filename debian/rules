@@ -48,7 +48,9 @@ install: build
 	install -m644 $(CURDIR)/build/$(NAME_VER).jar $(DESTDIR)/$(HADOOP_HOME)/lib/
 	install -m644 $(CURDIR)/build/$(NAME_VER).jar $(DESTDIR)/$(HADOOP_HOME)/lib/
 	rsync -av $(CURDIR)/build/$(NAME_VER)/lib/native/ $(DESTDIR)/$(HADOOP_HOME)/lib/native/
-
+	
+	mkdir -p $(DESTDIR)/usr/share/java
+	ln -s $(DESTDIR)/$(HADOOP_HOME)/lib/$(NAME_VER).jar $(DESTDIR)/usr/share/java/hadoop-lzo-compression.jar
 
 # Build architecture-independent files here.
 binary-indep: install
@@ -58,8 +60,6 @@ binary-indep: install
 binary-arch: install
 	dh_testdir
 	dh_testroot
-	dh_installchangelogs CHANGES.txt
-	dh_installdocs
 	dh_installexamples
 #	dh_install
 #	dh_installmenu
